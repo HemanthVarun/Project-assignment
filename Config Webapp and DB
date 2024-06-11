@@ -1,0 +1,11 @@
+sudo yum update -y                                                                    # Update package lists in first EC2 Instance(for Amazon Linux)
+sudo yum install python3 python3-pip -y                                               # Install Python3 and pip in first EC2 Instance(Amazon Linux)
+sudo yum install postgresql postgresql-devel -y                                       # Install PostgreSQL and development libraries For Second EC2 instance (Amazon Linux)
+sudo /usr/bin/postgresql-setup initdb
+sudo systemctl start postgresql
+sudo nano /etc/postgresql/15.7/main/postgresql.conf                                    # Replace X.Y with your PostgreSQL version
+sudo systemctl restart postgresql                                                      # Restart the service
+sudo su - postgres -c psql                                                             # Run this Command to use the psql command to connect to PostgreSQL
+CREATE USER myuser WITH PASSWORD 'strong_password';                                    # To create a user for your application
+CREATE DATABASE mydatabase OWNER myuser; \q                                            # Quit psql 
+
